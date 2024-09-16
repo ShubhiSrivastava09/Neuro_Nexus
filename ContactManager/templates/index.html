@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="my-4">Contact Manager</h1>
+    <a href="{{ url_for('add_contact') }}" class="btn btn-primary mb-3">Add New Contact</a>
+
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for name, details in contacts.items() %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ details.phone }}</td>
+            <td>{{ details.email }}</td>
+            <td>{{ details.address }}</td>
+            <td>
+                <a href="{{ url_for('edit_contact', name=name) }}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{{ url_for('delete_contact', name=name) }}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
