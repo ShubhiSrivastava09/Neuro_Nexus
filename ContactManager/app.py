@@ -40,6 +40,9 @@ def edit_contact(name):
 def delete_contact(name):
     manager.delete_contact(name)
     return redirect(url_for('index'))
+@app.route('/static/<path:filename>')
+def static_files(filename):
+    return send_from_directory('static', filename)
 
 # Run the Flask application
 if __name__ == '__main__':
